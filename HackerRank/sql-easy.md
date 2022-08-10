@@ -245,4 +245,75 @@ ORDER BY LAT_N ASC
 LIMIT 1;
 ```
 
+30. Higher Than 75 Marks
 
+Query the Name of any student in STUDENTS who scored higher than 75 Marks. Order your output by the last three characters of each name. If two or more students both have names ending in the same last three characters (i.e.: Bobby, Robby, etc.), secondary sort them by ascending ID.
+```sql
+SELECT Name FROM STUDENTS
+WHERE Marks>75
+ORDER BY RIGHT(Name,3), ID;
+```
+
+31. Employee Names
+
+Write a query that prints a list of employee names (i.e.: the name attribute) from the Employee table in alphabetical order.
+```sql
+SELECT name FROM Employee
+ORDER BY name;
+```
+
+32. Employee Salaries
+
+Write a query that prints a list of employee names (i.e.: the name attribute) for employees in Employee having a salary greater than $2000 per month who have been employees for less than 10 months. Sort your result by ascending employee_id.
+```sql
+SELECT name FROM Employee
+WHERE salary>2000 AND months<10
+ORDER BY employee_id;
+```
+
+33. The Blunder
+
+Samantha was tasked with calculating the average monthly salaries for all employees in the EMPLOYEES table, but did not realize her keyboard's  key was broken until after completing the calculation. She wants your help finding the difference between her miscalculation (using salaries with any zeros removed), and the actual average salary. Write a query calculating the amount of error (i.e.: actual-miscalculated average monthly salaries), and round it up to the next integer.
+```sql
+SELECT CEIL(AVG(Salary) - AVG(REPLACE(Salary,'0','')))
+FROM EMPLOYEES;
+```
+
+34. Top Earners
+
+We define an employee's total earnings to be their monthly salary * months worked, and the maximum total earnings to be the maximum total earnings for any employee in the Employee table. Write a query to find the maximum total earnings for all employees as well as the total number of employees who have maximum total earnings. Then print these values as 2 space-separated integers.
+```sql
+SELECT months*salary AS earnings, COUNT(*)
+FROM Employee
+GROUP BY earnings
+ORDER BY earnings DESC
+LIMIT 1;
+```
+
+35. Population Census
+
+Given the CITY and COUNTRY tables, query the sum of the populations of all cities where the CONTINENT is 'Asia'. Note: CITY.CountryCode and COUNTRY.Code are matching key columns.
+```sql
+SELECT SUM(CITY.POPULATION) FROM CITY
+JOIN COUNTRY ON CITY.COUNTRYCODE = COUNTRY.CODE
+WHERE COUNTRY.CONTINENT='Asia';
+```
+
+36. African Cities
+
+Given the CITY and COUNTRY tables, query the names of all cities where the CONTINENT is 'Africa'. Note: CITY.CountryCode and COUNTRY.Code are matching key columns.
+```sql
+SELECT CITY.NAME FROM CITY
+JOIN COUNTRY ON CITY.COUNTRYCODE = COUNTRY.CODE
+WHERE COUNTRY.CONTINENT='Africa';
+```
+
+37. Average Population of Each Continent
+
+Given the CITY and COUNTRY tables, query the names of all the continents (COUNTRY.Continent) and their respective average city populations (CITY.Population) rounded down to the nearest integer. Note: CITY.CountryCode and COUNTRY.Code are matching key columns.
+```sql
+SELECT COUNTRY.CONTINENT, FLOOR(AVG(CITY.POPULATION))
+FROM COUNTRY
+JOIN CITY ON CITY.COUNTRYCODE = COUNTRY.CODE
+GROUP BY COUNTRY.CONTINENT;
+```
