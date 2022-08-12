@@ -1,4 +1,4 @@
-HackerRank Challenges - Easy
+**HackerRank Challenges - Easy**
 
 1. Revising the Select Query I
 
