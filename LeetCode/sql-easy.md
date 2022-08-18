@@ -15,3 +15,13 @@ Write an SQL query to calculate the total time in minutes spent by each employee
 SELECT event_day AS day, emp_id, SUM(out_time - in_time) AS total_time FROM Employees
 GROUP BY event_day, emp_id;
 ```
+
+1693. Daily Leads and Partners
+
+Write an SQL query that will, for each date_id and make_name, return the number of distinct lead_id's and distinct partner_id's. Return the result table in any order. Table: DailySales
+
+```sql
+SELECT date_id, make_name, COUNT(DISTINCT lead_id) AS unique_leads, COUNT(DISTINCT partner_id) AS unique_partners
+FROM DailySales
+GROUP BY date_id, make_name;
+```
