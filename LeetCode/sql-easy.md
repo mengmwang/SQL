@@ -25,3 +25,17 @@ SELECT date_id, make_name, COUNT(DISTINCT lead_id) AS unique_leads, COUNT(DISTIN
 FROM DailySales
 GROUP BY date_id, make_name;
 ```
+
+175. Combine Two Tables
+
+Write an SQL query to report the first name, last name, city, and state of each person in the Person table. If the address of a personId is not present in the Address table, report null instead. Return the result table in any order. Table: Person, Address
+
+```sql
+SELECT p.firstName, p.lastName, a.city, a.state
+FROM Person AS p
+LEFT JOIN Address AS a ON p.personId = a.personId;
+```
+
+
+
+
